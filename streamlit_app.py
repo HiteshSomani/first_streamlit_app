@@ -1,4 +1,5 @@
 import streamlit
+import snowflake.connector
 streamlit.title('My Parents New Healthy')
 streamlit.header('Breakfast Favorites')
 streamlit.text('🥣 Omega 3 and Blueberry Oatmeal')
@@ -25,7 +26,7 @@ import requests
 fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+ fruit_choice)
 #streamlit.text(fruityvice_response.json())# just writes data on the screen
 
-# mormalize json response
+# normalize json response
 fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # display output as table 
 streamlit.dataframe(fruityvice_normalized)
