@@ -42,7 +42,7 @@ try:
 # normalize json response
   # fruityvice_normalized = pandas.json_normalize(fruityvice_response.json())
 # display output as table 
-  back_from_function=get_fruitcyvice_data(fruit_choice)
+  back_from_function=get_fruityvice_data(fruit_choice)
   streamlit.dataframe(back_from_function)
 except URLerror as e:
  streamlit.error()
