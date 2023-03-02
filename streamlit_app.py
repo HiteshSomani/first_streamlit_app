@@ -22,7 +22,7 @@ streamlit.dataframe(fruits_to_show)
 # Section to display API response 
 
 def get_fruityvice_data(this_fruit_choice):
-fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+ this_fruit_choice)
+ fruityvice_response = requests.get("https://fruityvice.com/api/fruit/"+ this_fruit_choice)
 #streamlit.text(fruityvice_response.json())# just writes data on the screen
 
 # normalize json response
