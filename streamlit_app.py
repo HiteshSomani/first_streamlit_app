@@ -36,15 +36,24 @@ try:
   streamlit.dataframe(back_from_function)
 except URLError as e:
  streamlit.error()
-#dont run anything past here
-streamlit.stop()
-my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
-my_cur = my_cnx.cursor()
-my_cur.execute("SELECT * from fruit_load_list")
+
+
+#my_cur = my_cnx.cursor()
+#my_cur.execute("SELECT * from fruit_load_list")
 #my_data_row = my_cur.fetchone()
-my_data_rows = my_cur.fetchall()
+#my_data_rows = my_cur.fetchall()
 streamlit.header("The list contains:")
-streamlit.dataframe(my_data_rows)
+def get_load_fruit_list():
+ with my_cnx.cursor()as my_cur
+ my_cur.execute("SELECT * from fruit_load_list")
+ return my_cur.fetchall()
+
+if streamlit.button("Get Fruit load list"):
+ my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
+ my_data_rows=get_load_fruit_list()
+ streamlit.dataframe(my_data_rows)
+ #dont run anything past here
+streamlit.stop()
 fruit_add = streamlit.text_input('What fruit would you like to add ?','Kiwi')
 streamlit.write('Thank You for adding ', fruit_add)
 my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values ('from streamlit')")
